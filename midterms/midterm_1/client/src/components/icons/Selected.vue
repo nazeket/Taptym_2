@@ -1,0 +1,15 @@
+<template>
+  <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.0001 1L6.0001 12L1 7" stroke="#2580D5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</template>
+
+<script>
+export default {
+  name: "Selected"
+}
+</script>
+
+<style scoped>
+
+</style>
