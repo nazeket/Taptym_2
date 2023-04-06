@@ -61,17 +61,9 @@ const searchProduct = async () => {
 ```
 #### Result:
 https://user-images.githubusercontent.com/78365937/230440246-a5af0b1e-dcee-4534-8da4-5b5206443b14.MP4
+
 ### 3. Commenting items 
-'''vue
-const updateProduct = async () => {
-  const result = await store.dispatch('updateAnnouncement', {id: route.params.id, comment: commentValue.value})
-  if (result) {
-    const result = await store.dispatch('getAnnouncementById', route.params.id)
-    product.value = result[0]
-  }
-  commentValue.value = ''
-}
-'''
+
 ```golang
 func (ProductController) UpdateProductById(c echo.Context) error {
 	data := echo.Map{}
