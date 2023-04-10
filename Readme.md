@@ -5,8 +5,7 @@
 https://user-images.githubusercontent.com/78365937/230956797-16cb999b-c8ad-4516-a6b3-e1a50204b0ca.MP4
 
 #### Welcome page
-'''vue
-
+```vue
 <template>
     <div class="px-4 py-4">
       <div class="d-flex my-10 align-center justify-center">
@@ -74,11 +73,11 @@ https://user-images.githubusercontent.com/78365937/230956797-16cb999b-c8ad-4516-
   </style>
   
   
-'''
+```
 
 ## Progress report - 7
-'''golang
 
+```golang
 func (ProductController) GetProductList(c echo.Context) error {
 	var modelInstance []models.Product
 	utils.DB.Find(&modelInstance)
@@ -86,8 +85,7 @@ func (ProductController) GetProductList(c echo.Context) error {
 	fmt.Println(modelInstance)
 	return c.JSON(http.StatusOK, modelInstance)
 }
-
-'''
+```
 
 ### 1. Filtering items based on price, rating 
 
