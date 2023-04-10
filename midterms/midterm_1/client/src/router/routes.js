@@ -14,6 +14,7 @@ const myPoints = () => import('@/pages/profile/myPoints.vue')
 const hashtags = () => import('@/pages/profile/hashtags.vue')
 const productList = () => import('@/pages/common/productList.vue')
 const favorites = () => import('@/pages/profile/favorites.vue')
+const welcome = () => import('@/pages/common/welcome.vue')
 export const routes = [
     {
         path: '/',
@@ -37,6 +38,11 @@ export const routes = [
         path: '/auth/registration',
         name: 'registration',
         component: registration,
+    },
+    {
+        path: '/auth/welcome',
+        name: 'welcome',
+        component: welcome
     },
     {
         path: '/dashboard',
@@ -133,7 +139,7 @@ export const routes = [
         ]
     },
 ].map(route => {
-    if (!['registration', 'login'].includes(route.name)) {
+    if (!['registration', 'login', 'welcome'].includes(route.name)) {
         if ('children' in route) {
             route.children.map(childRoute => {
                 if (!('meta' in childRoute)) {
@@ -150,4 +156,3 @@ export const routes = [
     }
     return route;
 });
-
