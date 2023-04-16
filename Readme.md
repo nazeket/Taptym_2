@@ -16,7 +16,7 @@
 ![image](https://user-images.githubusercontent.com/78365937/232321534-dc268a76-3d6a-40db-b60d-acae95b23430.png)
 
 ### Admin 
-####admin=0 when registering. then it means non-admin.
+#### admin=0 when registering. then it means non-admin.
 
 ![image (7)](https://user-images.githubusercontent.com/78365937/232321744-26f2d8f9-aeec-4494-958e-b1680bcd20d0.png)
 
