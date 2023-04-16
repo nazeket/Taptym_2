@@ -11,8 +11,9 @@ type Product struct {
 	ID          uint   `json:"uid,omitempty" gorm:"primarykey"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
-	Comment     string `json:"comment"`
+	TradeType   string `json:"tradeType"`
+	Category    string `json:"category"`
 	Price       string `json:"price"`
-	ImageUrl    string `json:"image_url"`
-	Rating      string `json:"rating"`
+	City        string `json:"city"`
+	Images      string `json:"images"`
 }

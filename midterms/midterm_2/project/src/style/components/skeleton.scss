@@ -1,0 +1,33 @@
+.content__skeleton {
+  border: 1px solid #E5E5EA;
+  border-radius: 16px;
+
+  .content__image {
+    border-radius: 12px 12px 0px 0px;
+    overflow: hidden;
+  }
+}
+
+.chat__skeleton {
+  .avatar__skeleton {
+    border-radius: 10px;
+  }
+
+  .chat__name {
+    border-radius: 7px;
+  }
+
+  .chat__content, .chat__time {
+    border-radius: 5px;
+  }
+}
+
+.profile__skeleton {
+  .profile__row {
+    border-radius: 10px;
+  }
+
+  .profile__name {
+    border-radius: 5px;
+  }
+}

@@ -60,7 +60,7 @@ func (AuthController) Login(c echo.Context) error {
 	cookie.HttpOnly = true
 	c.SetCookie(cookie)
 
-	return c.JSON(http.StatusOK, echo.Map{"message": token})
+	return c.JSON(http.StatusOK, echo.Map{"accessToken": t})
 }
 
 func (AuthController) Signup(c echo.Context) error {
@@ -82,6 +82,7 @@ func (AuthController) Signup(c echo.Context) error {
 
 	user := models.User{
 		Email:    data["email"],
+		Phone:    data["phone"],
 		Password: string(hashedPwd),
 	}
 
@@ -115,19 +116,20 @@ func (AuthController) User(c echo.Context) error {
 	return c.JSON(http.StatusOK, echo.Map{"user": user})
 }
 
-func (ProductController) CreateProduct(c echo.Context) error {
+func (ProductController) CreateAnnouncement(c echo.Context) error {
 	var data map[string]string
 
 	if err := c.Bind(&data); err != nil {
-		return c.JSON(http.StatusBadRequest, echo.Map{"message": "invalid JSON"})
+		return c.JSON(http.StatusBadRequest, echo.Map{"message": err})
 	}
 	product := models.Product{
 		Title:       data["title"],
 		Description: data["description"],
 		Price:       data["price"],
-		ImageUrl:    data["image_url"],
-		Rating:      data["rating"],
-		Comment:     data["comment"],
+		Images:      data["images"],
+		City:        data["city"],
+		Category:    data["category"],
+		TradeType:   data["tradeType"],
 	}
 
 	result := utils.DB.Create(&product)
