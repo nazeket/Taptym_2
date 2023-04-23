@@ -3,56 +3,18 @@
               leave-active-class="animate__animated animate__slideOutDown animate__faster">
     <div v-if="store.state[panelName]" class="position-fixed createPanel page" ref="createPanel">
       <div class="d-flex align-center justify-space-between mb-8">
-        <h4>{{ mode === 'create' ? 'Создайте заявку' : 'Редактировать заявку' }}</h4>
+        <h4>Создайте заявку</h4>
         <icon name="close-icon" @click="store.state[panelName] = false"/>
       </div>
-      <the-text-input :disabled="true" :isCategory="true" bindKey="tradeType" placeholder="Категория"
-                      label="Что хотите сделать*" class="mb-4" @click="openTogglePanel('tradeType')"/>
+<!--      <the-text-input :disabled="true" :isCategory="true" bindKey="tradeType" placeholder="Категория"-->
+<!--                      label="Что хотите сделать*" class="mb-4" @click="openTogglePanel('tradeType')"/>-->
       <the-text-input :disabled="true" :isCategory="true" bindKey="category" placeholder="Категория"
-                      label="Что хотите сделать*" class="mb-4" @click="openTogglePanel('category')"/>
+                      label="Выберите категорию*" class="mb-4" @click="openTogglePanel('category')"/>
       <the-text-input bindKey="title" placeholder="Toyota Camry" label="Заголовок*" class="mb-4"/>
-      <!--    <the-text-input bindKey="hashtags" placeholder="Hashtags" label="Хештеги*" class="mb-4"/>-->
-      <div class="hashtags__list mb-4">
-        <div class="list__title">Хештеги*</div>
-        <div class="hashtag__container d-flex align-center flex-wrap" @click="openHashtagModal">
-          <div v-for="hashtag in hashtagList" class="hashtag__item d-flex align-center purple mr-2">
-            <span class="d-inline-block pr-1">{{ hashtag }}</span>
-            <icon name="remove-hashtag"/>
-          </div>
-        </div>
-        <v-dialog
-            v-model="hashtagModal"
-        >
-          <v-card class="hashtagModal px-4 py-4 d-flex flex-column">
-            <div class="d-flex fill-width align-center justify-space-between">
-              <h4>Хештеги*</h4>
-              <button class="save" @click="hashtagModal = false">Сохранить</button>
-            </div>
-            <div class="fill-width flex-shrink-1 flex-grow-1 mt-6">
-              <div class="modal__body overflow-y-auto flex-wrap">
-                <div v-for="hashtag in hashtagList" class="hashtag__item d-inline-flex align-center gray mr-2 mb-2"
-                     @click="deleteHashtag(hashtag)">
-                  <span class="d-inline-block pr-1">{{ hashtag }}</span>
-                  <icon name="remove-hashtag"/>
-                </div>
-              </div>
-            </div>
-            <div class="hashtagModal__input fill-width">
-              <div class="d-flex align-center">
-                <icon name="hashtag" class="mr-3"/>
-                <input ref="newHashtagInput" v-model="newHashtag" class="flex-shrink-1 flex-grow-1"
-                       placeholder="Создать новый хештег"
-                       type="text">
-                <icon v-if="newHashtag" name="add-hashtag" @click="addHashtag"/>
-              </div>
-            </div>
-          </v-card>
-        </v-dialog>
-      </div>
       <the-text-input :disabled="true" :isCategory="true" bindKey="city" placeholder="Алматы" label="Город" class="mb-4"
                       @click="openTogglePanel('city')"/>
       <the-text-input bindKey="price" placeholder="1 000 ₸" label="Цена" class="mb-4"/>
-      <the-text-input bindKey="imageUrl" placeholder="URL" label="Добавьте фото" class="mb-4"/>
+      <the-text-input bindKey="images" placeholder="URL" label="Добавьте фото" class="mb-4"/>
       <div>
         <div class="input__label mb-2">Описание*</div>
         <v-textarea
@@ -209,8 +171,7 @@ const createAnnouncement = async () => {
     title: store.state.Statement.title,
     description: store.state.Statement.description,
     price: store.state.Statement.price.replaceAll(' ', ''),
-    images: store.state.Statement.imageUrl,
-    tradeType: store.state.tradeType.find((type)=> type.name === store.state.Statement.tradeType).type,
+    images: store.state.Statement.images,
     city: store.state.Statement.city,
     category: store.state.category.find((type)=> type.name === store.state.Statement.category).type,
     userId: String(store.state.profileData.uid)
@@ -225,5 +186,6 @@ const deleteStatement = async () => {
   await router.go(-1)
 }
 const updateAnnouncement = async () => {
+  await store.dispatch('updateAnnouncement')
 }
 </script>

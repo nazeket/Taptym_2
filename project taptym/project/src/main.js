@@ -10,8 +10,8 @@ import {MotionPlugin} from '@vueuse/motion'
 import 'vuetify/styles'
 import { Skeletor } from 'vue-skeletor';
 import 'vue-skeletor/dist/vue-skeletor.css';
-// import Pusher from 'pusher-js'
-// import Echo from 'laravel-echo'
+import vue3StarRatings from "vue3-star-ratings";
+
 import('./style/main.scss')
 import Maska from "maska";
 
@@ -19,12 +19,8 @@ const app = createApp(App);
 import 'animate.css';
 import {store} from "@/store/index.js";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'fcf6523f0245cfda1179',
-//     cluster: 'mt1',
-//     forceTLS: true,
-// })
+app.component("vue3-star-ratings", vue3StarRatings);
+
 const vuetify = createVuetify({
     components,
     directives,

@@ -21,13 +21,6 @@
           </div>
           <icon name="right"/>
         </router-link>
-        <router-link :to="{name: 'favorites'}" class="profile__block">
-          <icon name="favorites"/>
-          <div class="block__title">
-            Избранное
-          </div>
-          <icon name="right"/>
-        </router-link>
         <router-link :to="{name: 'myPoints'}" class="profile__block">
           <icon name="points"/>
           <div class="block__title">

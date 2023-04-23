@@ -6,8 +6,10 @@ export const state = {
         delete: false,
         isContentLoading: false,
         isContentDetailLoading: false,
-        isChatLoading: false,
+        addComment: false,
         isUserDataLoading: false,
+        approve: false,
+        reject: false,
     },
     LoginCredentials: {...new LoginCredentials()},
     RegisterCredentials: {...new RegisterCredentials()},
@@ -15,6 +17,11 @@ export const state = {
     profileData: {},
     Statement: {...new Statement()},
     contents: [],
+    comment: {
+        title: '',
+        text: ''
+    },
+    comments: [],
     userHashtags: [],
     announcementList: [],
     similarAnnouncements: [],
@@ -54,25 +61,36 @@ export const state = {
     category: [
         {
             id: 1,
-            name: 'Авто',
+            name: 'Транспорт',
             type: 'auto',
         },
         {
             id: 2,
-            name: 'Прочее',
+            name: 'Работа',
             type: 'more',
         },
         {
             id: 3,
-            name: 'Жилье',
+            name: 'Недвижимость',
             type: 'quarter',
         },
         {
             id: 4,
-            name: 'Услуги',
-            type: 'services',
+            name: 'Объявления',
+            type: 'announcements',
+        },
+        {
+            id: 5,
+            name: 'Животные',
+            type: 'animals',
+        },
+        {
+            id: 6,
+            name: 'Электроника',
+            type: 'electronics'
         }
     ],
+    announcements: [],
     buy: {
         more: [],
         auto: [],
@@ -90,5 +108,8 @@ export const state = {
         auto: [],
         services: [],
         quarter: [],
+    },
+    search: {
+        term: ''
     }
 }

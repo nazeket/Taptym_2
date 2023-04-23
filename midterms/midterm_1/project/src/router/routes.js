@@ -123,14 +123,6 @@ export const routes = [
         path: '/favorites',
         name: 'favorites',
         component: favorites,
-        redirect: '/favorites/more',
-        children: [
-            {
-                path: ':category',
-                name: 'favoriteCategory',
-                component: productList,
-            },
-        ]
     },
 ].map(route => {
     if (!['registration', 'login'].includes(route.name)) {

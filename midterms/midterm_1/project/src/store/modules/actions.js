@@ -1,5 +1,5 @@
-import { api } from '@/api/endpoints.js';
-import { useToast } from 'vue-toastification';
+import {api} from '@/api/endpoints.js';
+import {useToast} from 'vue-toastification';
 
 const toaster = useToast()
 export const actions = {
@@ -37,7 +37,7 @@ export const actions = {
             context.state.isLoading = false
         }
     },
-    async createAnnouncement({ state }, data) {
+    async createAnnouncement({state}, data) {
         try {
             state.isLoading = true
             await api.createAnnouncementApi(data)
@@ -46,35 +46,155 @@ export const actions = {
             state.Statement.title = ''
             state.Statement.description = ''
             state.Statement.price = ''
-            state.Statement.imageUrl = ''
+            state.Statement.images = ''
             state.Statement.tradeType = ''
             state.Statement.city = ''
             state.Statement.category = ''
         } catch (error) {
-            console.log(error)
+            if ('response' in error) {
+                if ('message' in error.response.data) {
+                    toaster.error(error.response.data.message)
+                } else {
+                    toaster.error(error.response.data)
+                }
+            }
         } finally {
             state.isLoading = false
         }
     },
-    async getAnnouncementList({ state }) {
+    async getAnnouncementList({state}) {
         try {
+            state.loaders['isContentLoading'] = true
+            state.announcements = []
             const response = await api.getAnnouncementList(state.profileData.uid)
-            if (response.length) {
-                response.forEach((announcement) => {
-                    state[announcement['tradeType']][announcement['category']].push(announcement)
-                })
+            if (state.profileData.uid === 1) {
+                state.announcements = response.filter((a) => a.confirmed !== 1)
+            } else {
+                state.announcements = response.filter((a) => a.confirmed === 1)
             }
         } catch (error) {
-            console.log(error)
+            if ('response' in error) {
+                if ('message' in error.response.data) {
+                    toaster.error(error.response.data.message)
+                } else {
+                    toaster.error(error.response.data)
+                }
+            }
+        } finally {
+            state.loaders['isContentLoading'] = false
         }
     },
-    async getUserData({ state }) {
+    async getUserData({state}) {
         try {
             if (state.profileData.uid) return
             const response = await api.getUserData()
             state.profileData = response.user
         } catch (error) {
-            console.log(error)
+            if ('response' in error) {
+                if ('message' in error.response.data) {
+                    toaster.error(error.response.data.message)
+                } else {
+                    toaster.error(error.response.data)
+                }
+            }
+        }
+    },
+    async getAnnouncementById({state}, id) {
+        try {
+            const response = await api.getAnnouncementById(id)
+            return response[0]
+        } catch (error) {
+            if ('response' in error) {
+                if ('message' in error.response.data) {
+                    toaster.error(error.response.data.message)
+                } else {
+                    toaster.error(error.response.data)
+                }
+            }
+        }
+    },
+    async updateAnnouncement({state}, {id, decision}) {
+        try {
+            const data = {
+                confirmed: decision
+            }
+            if (decision === 1) {
+                state.loaders.approve = true
+            } else {
+                state.loaders.reject = true
+            }
+            await api.updateAnnouncement(data, id)
+            return true
+        } catch (error) {
+            if ('response' in error) {
+                if ('message' in error.response.data) {
+                    toaster.error(error.response.data.message)
+                } else {
+                    toaster.error(error.response.data)
+                }
+            }
+            return false
+        } finally {
+            state.loaders.approve = state.loaders.reject = false
+        }
+    },
+    async search({state}) {
+        try {
+            state.loaders.isContentLoading = true
+            const response = await api.searchAnnouncement(state.search.term)
+            if (state.profileData.uid === 1) {
+                state.announcements = response.filter((a) => a.confirmed !== 1)
+            } else {
+                state.announcements = response.filter((a) => a.confirmed === 1)
+            }
+        } catch (error) {
+            if ('response' in error) {
+                if ('message' in error.response.data) {
+                    toaster.error(error.response.data.message)
+                } else {
+                    toaster.error(error.response.data)
+                }
+            }
+        } finally {
+            state.loaders.isContentLoading = false
+        }
+    },
+    async addComment({state}, {rating, productId}) {
+        try {
+            state.loaders.addComment = true
+            const data = {
+                text: state.comment.text,
+                title: state.comment.title,
+                rating: String(rating),
+                userName: state.profileData.fullName,
+                productId: String(productId)
+            }
+            await api.addComment(data)
+            state.comment = ''
+            toaster.success('Ваш комментарий был успешно добавлен')
+        } catch (error) {
+            if ('response' in error) {
+                if ('message' in error.response.data) {
+                    toaster.error(error.response.data.message)
+                } else {
+                    toaster.error(error.response.data)
+                }
+            }
+        } finally {
+            state.loaders.addComment = false
+        }
+    },
+    async getComments({state}, product_id) {
+        try {
+            state.comments = await api.getComments(product_id)
+        } catch (error) {
+            if ('response' in error) {
+                if ('message' in error.response.data) {
+                    toaster.error(error.response.data.message)
+                } else {
+                    toaster.error(error.response.data)
+                }
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ func InitDB() {
 		panic("Failed to connect to database")
 	}
 
-	if err = db.AutoMigrate(&models.User{}, &models.Product{}); err != nil {
+	if err = db.AutoMigrate(&models.User{}, &models.Product{}, &models.Comment{}); err != nil {
 		return
 	}
 	DB = db

@@ -83,6 +83,8 @@ func (AuthController) Signup(c echo.Context) error {
 	user := models.User{
 		Email:    data["email"],
 		Phone:    data["phone"],
+		Admin:    data["admin"],
+		FullName: data["fullName"],
 		Password: string(hashedPwd),
 	}
 
@@ -111,7 +113,7 @@ func (AuthController) User(c echo.Context) error {
 
 	var user models.User
 
-	utils.DB.Where("id = ?", uid).Select("id", "email").First(&user)
+	utils.DB.Where("id = ?", uid).Select("id", "email", "full_name", "phone").First(&user)
 
 	return c.JSON(http.StatusOK, echo.Map{"user": user})
 }
@@ -129,7 +131,8 @@ func (ProductController) CreateAnnouncement(c echo.Context) error {
 		Images:      data["images"],
 		City:        data["city"],
 		Category:    data["category"],
-		TradeType:   data["tradeType"],
+		UserId:      data["userId"],
+		Confirmed:   0,
 	}
 
 	result := utils.DB.Create(&product)
@@ -141,11 +144,40 @@ func (ProductController) CreateAnnouncement(c echo.Context) error {
 	return c.JSON(http.StatusOK, echo.Map{"message": "successfully created product"})
 }
 
+func (ProductController) AddComment(c echo.Context) error {
+	var data map[string]string
+
+	if err := c.Bind(&data); err != nil {
+		return c.JSON(http.StatusBadRequest, echo.Map{"message": err})
+	}
+	comment := models.Comment{
+		Text:      data["text"],
+		Title:     data["title"],
+		Rating:    data["rating"],
+		UserName:  data["userName"],
+		ProductId: data["productId"],
+	}
+
+	result := utils.DB.Create(&comment)
+
+	if result.Error != nil {
+		return c.JSON(http.StatusForbidden, echo.Map{"message": result.Error.Error()})
+	}
+
+	return c.JSON(http.StatusOK, echo.Map{"message": "success"})
+}
+
 func (ProductController) GetProductList(c echo.Context) error {
 	var modelInstance []models.Product
-	utils.DB.Find(&modelInstance)
-	fmt.Println("console")
-	fmt.Println(modelInstance)
+	term := c.QueryParam("userId")
+	utils.DB.Not("user_id = ?", term).Find(&modelInstance)
+	return c.JSON(http.StatusOK, modelInstance)
+}
+func (ProductController) GetCommentList(c echo.Context) error {
+	var modelInstance []models.Comment
+	term := c.QueryParam("productId")
+	fmt.Println("term", term)
+	utils.DB.Where("product_id = ?", term).Find(&modelInstance)
 	return c.JSON(http.StatusOK, modelInstance)
 }
 func (ProductController) GetProductById(c echo.Context) error {
@@ -159,8 +191,11 @@ func (ProductController) UpdateProductById(c echo.Context) error {
 	if err := c.Bind(&data); err != nil {
 		return err
 	}
-
-	utils.DB.Model(&models.Product{}).Where("id = ?", c.Param("id")).Update("comment", data["comment"])
+	if data["confirmed"] == "1" {
+		utils.DB.Model(&models.Product{}).Where("id = ?", c.Param("id")).Update("confirmed", 1)
+	} else {
+		utils.DB.Model(&models.Product{}).Where("id = ?", c.Param("id")).Update("confirmed", -1)
+	}
 
 	return c.JSON(http.StatusOK, echo.Map{"message": "successfully updated product"})
 }

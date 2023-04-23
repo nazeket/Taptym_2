@@ -2,7 +2,7 @@
   <router-link :to="{name: 'chatDetail', params: {chatId: chatId, announcementId: announcementId}}"
                class="d-flex justify-space-between chat__block mt-6">
     <div class="chat__block__image">
-      <img :src="imageUrl" alt="">
+      <img :src="images" alt="">
 <!--      <p>Айдар</p>-->
     </div>
     <div class="chat__message__container flex-grow-1 flex-shrink-1 pl-4 pr-2">

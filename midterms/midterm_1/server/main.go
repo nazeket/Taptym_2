@@ -27,6 +27,8 @@ func main() {
 	authController := new(controllers.AuthController)
 
 	productRouter.POST("/create", productController.CreateAnnouncement)
+	productRouter.POST("/add-comment", productController.AddComment)
+	productRouter.GET("/comments", productController.GetCommentList)
 	productRouter.GET("/list", productController.GetProductList)
 	productRouter.GET("/:id", productController.GetProductById)
 	productRouter.POST("/update/:id", productController.UpdateProductById)

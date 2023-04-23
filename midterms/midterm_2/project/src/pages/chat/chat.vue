@@ -8,7 +8,7 @@
           v-if="chatList.length"
           v-for="chat in chatList"
           :key="chat.id"
-          :imageUrl="chat.announcement.images[0][0]"
+          :images="chat.announcement.images[0][0]"
           :announcementId="chat.announcement.id"
           :chatId="chat.id"
           :title="chat['announcement']['user']['name']"

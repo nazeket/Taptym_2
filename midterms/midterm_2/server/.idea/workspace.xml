@@ -5,17 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98f7dcc8-b483-46bd-9aed-d19124c11761" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../taptym/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../taptym/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../taptym/src/api/endpoints.js" beforeDir="false" afterPath="$PROJECT_DIR$/../taptym/src/api/endpoints.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../taptym/src/pages/common/statement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../taptym/src/pages/common/statement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../taptym/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../taptym/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../taptym/src/pages/common/product.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../taptym/src/pages/common/product.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../taptym/src/store/modules/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../taptym/src/store/modules/actions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../taptym/src/store/modules/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/../taptym/src/store/modules/state.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../taptym/src/style/pages/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../taptym/src/style/pages/global.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../taptym/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../taptym/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../Program Files/Go" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -40,7 +44,7 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "C:/Users/kanagatzh/Desktop/naz/server",
+    "last_opened_file_path": "/Users/kanagatzhumagaliev/Desktop/naz/server",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
