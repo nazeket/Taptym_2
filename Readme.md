@@ -1,3 +1,29 @@
+## Progress report - 9
+### docker file
+
+![image (9)](https://user-images.githubusercontent.com/78365937/232321253-562b617c-43e5-4567-ab75-e5963722ec5f.png)
+
+### Publishing item
+
+![image (10)](https://user-images.githubusercontent.com/78365937/232321761-8170a160-b224-44a0-9211-303e5c563676.png)
+
+![image](https://user-images.githubusercontent.com/78365937/232321512-1161efd9-e691-48c8-a537-8bafe63460d9.png)
+
+### Roles: client, seller 
+
+![image](https://user-images.githubusercontent.com/78365937/232321525-784c154f-770c-4110-9ecc-5a25d4087e64.png)
+
+![image](https://user-images.githubusercontent.com/78365937/232321534-dc268a76-3d6a-40db-b60d-acae95b23430.png)
+
+### Admin 
+#### admin=0 when registering. then it means non-admin.
+
+![image (7)](https://user-images.githubusercontent.com/78365937/232321744-26f2d8f9-aeec-4494-958e-b1680bcd20d0.png)
+
+
+
+
+
 ## Progress report - 8
 ### Final(WELCOME PAGE)
 #### Result: 
