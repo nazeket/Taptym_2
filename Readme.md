@@ -1,3 +1,23 @@
+## Progress report - 10
+### Added admin page. Changes have been made.
+
+[screen-capture (2).webm](https://user-images.githubusercontent.com/78365937/233851197-1d6b0b78-9564-4f99-91cf-67cf4c4551de.webm)
+
+### code
+```vue
+onMounted(async () => {
+  const data = {
+    email: 'admin@gmail.com',
+    phone: '',
+    password: 'admin',
+    admin: '1',
+  }
+  await store.dispatch('register', data)
+})
+```
+
+
+
 ## Progress report - 9
 ### docker file
 
