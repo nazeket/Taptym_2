@@ -118,10 +118,12 @@ export const actions = {
             const data = {
                 confirmed: decision
             }
-            if (decision === 1) {
+            if (decision === "1") {
                 state.loaders.approve = true
+                toaster.success('Объявление успешно одобрено')
             } else {
                 state.loaders.reject = true
+                toaster.success('Объявление было успешно отклонено')
             }
             await api.updateAnnouncement(data, id)
             return true

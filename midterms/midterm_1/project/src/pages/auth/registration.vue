@@ -4,7 +4,7 @@
       <div class="flex-shrink-1 flex-grow-1">
         <return-back/>
         <h3 class="login__header">Регистрация</h3>
-        <the-text-input bindKey="fullName" label="ФИО" placeholder="ФИО"/>
+        <the-text-input bindKey="fullName" label="ФИО" placeholder="ФИО" class="mb-4"/>
         <the-text-input bindKey="email" rule-type="email" label="Электронная почта" placeholder="taptym@gmail.com"/>
         <the-phone-input bindKey="phone" label="Телефон" placeholder="+7 (000) 000 00 00" class="mt-4"/>
         <the-password-input bindKey="password" label="Пароль" class="mt-4"/>

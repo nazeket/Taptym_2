@@ -1,7 +1,7 @@
 <template>
   <router-link
       v-if="store.state['announcements'].length && !store.state.loaders.isContentLoading"
-      v-for="product in store.state['announcements']"
+      v-for="product in filtered"
       :key="product.uid"
       :to="{name: 'product', params: {
         tradeType: 'buy',
@@ -23,9 +23,16 @@ import AnnouncementBlock from "@/components/AnnouncementBlock.vue";
 import NoContent from "@/components/NoContent.vue";
 import {useRoute} from "vue-router";
 import {useStore} from "vuex";
-import {provide, reactive, watch} from "vue";
+import {computed, provide, reactive, watch} from "vue";
 import ContentSkeleton from "@/components/skeleton/ContentSkeleton.vue";
 
 const route = useRoute()
 const store = useStore()
+const filtered = computed(() => {
+  if (store.state.filter.length) {
+    return store.state['announcements'].sort((p1, p2) =>
+        (Number(p1[store.state.filter[0]]) < Number(p2[store.state.filter[0]])) ? 1 : (Number(p1[store.state.filter[0]]) > Number(p2[store.state.filter[0]])) ? -1 : 0)
+  }
+  return store.state['announcements']
+})
 </script>

@@ -432,6 +432,15 @@ input::placeholder {
   }
 }
 
+.v-input__details {
+  display: none !important;
+}
+.v-selection-control{
+  flex-direction: row-reverse;
+  .v-label{
+    font-weight: 500;
+  }
+}
 .add__newCard {
   z-index: 4;
   position: fixed;

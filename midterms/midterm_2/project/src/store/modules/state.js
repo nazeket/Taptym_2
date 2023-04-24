@@ -15,6 +15,7 @@ export const state = {
     RegisterCredentials: {...new RegisterCredentials()},
     tradeProductHeader: '',
     profileData: {},
+    filter: ['rating'],
     Statement: {...new Statement()},
     contents: [],
     comment: {

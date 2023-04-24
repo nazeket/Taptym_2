@@ -40,12 +40,9 @@
           <div class="product__author">
             <h3 class="mb-2">{{ comment.title}}</h3>
             <div class="d-flex align-center justify-space-between">
-              <vue3-star-ratings
-                  disableClick
-                  v-model="comment.rating"
-                  inactiveColor="rgba(209, 209, 214, 1)"
-                  starSize="15" :showControl="false"
-                  class="px-0 py-0 mx-0 my-0 text-start d-inline-block"/>
+              <div>
+                <icon icon-name="star" v-for="s in comment.rating"/>
+              </div>
               <div class="author__name">{{ comment.userName }}</div>
             </div>
             <p class="mt-2">{{ comment.text }}</p>
@@ -69,7 +66,7 @@
           >
 
           </v-textarea>
-          <the-button :disabled="!rating || !store.state.comment.title" name="Отправить" @click.prevent="addComment"/>
+          <the-button :disabled="!rating || !store.state.comment.text" name="Отправить" @click.prevent="addComment"/>
         </div>
       </div>
       <div v-if="store.state.profileData.uid === 1" class="d-flex align-center fill-width mt-8 mb-4">
@@ -130,7 +127,7 @@ const router = useRouter()
 const tradeType = computed(() => route.params.tradeType)
 const category = route.params.category
 const product = ref({})
-const rating = ref()
+const rating = ref(0)
 const toaster = useToast()
 onMounted(async () => {
   product.value = await store.dispatch('getAnnouncementById', route.params.id)

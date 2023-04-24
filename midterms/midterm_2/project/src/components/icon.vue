@@ -10,6 +10,7 @@ import Google from "./icons/Google.vue";
 import Telegram from "./icons/Telegram.vue";
 import Checked from "./icons/Checked.vue";
 import Home from "./icons/Home.vue";
+import Star from "@/components/icons/Star.vue";
 import Plus from "./icons/Plus.vue";
 import Document from "./icons/Document.vue";
 import Profile from "./icons/Profile.vue";
@@ -56,6 +57,7 @@ export default {
     Location,
     AddPhoto,
     AddHashtag,
+    Star,
     RemoveHashtag,
     Selected,
     Search,
